@@ -1,0 +1,36 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+    <main>
+        <div class="row">
+            <ul class="list-group">
+              <% for(var i=0; i<foods.length; i++) {%>
+                <li class="list-group-item">
+                  <b><span><%= foods[i].name %></b></span><br>
+                  <span><%= foods[i].making %></span>
+                  <ul class="list-group">
+                    <%for(var j=0; j<(foods[i].ingredients).length; j++) {%>
+                     <li class="list-group-item">
+                        <b><span><%= (foods[i].ingredients[j]).name %></b></span><br>
+                     </li>
+                     <% } %>
+                  </ul>
+                </li>
+              <% } %>
+            </ul>
+        </div>
+    </main>
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    
+</body>
+</html>

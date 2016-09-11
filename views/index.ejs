@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+  May Node and Express be with you.
+
+  <ul class="quotes">
+  <% for(var i=0; i<quotes.length; i++) {%>
+    <li class="quote">
+      <span><%= quotes[i].name %></span>
+      <span><%= quotes[i].quote %></span>
+    </li>
+  <% } %>
+  </ul>
+
+  <form action="/todo" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="description" name="description">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
+
+
+
+
+
+<ul class="list-group">
+                    <%for(var j=0; j<(foods[i].ingredients).length; i++) {%>
+                     <li class="list-group-item">
+                        <b><span><%= (foods[i].ingredients[j]).name %></b></span><br>
+                     </li>
+                     <% } %>
+                  </ul>

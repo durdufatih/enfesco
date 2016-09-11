@@ -1,0 +1,49 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script type="text/javascript">
+      
+      $( document ).ready(function() {
+        $("select").select2();
+      });
+    </script>
+</head>
+<body class="container">
+
+    <main>
+       <div class="my-row special text-center">
+      <div class="v-m">
+      <div class="row">
+         <form action="/search" method="POST">
+          <div class="form-group">
+            <label for="pwd">Malzemeler:</label>
+             <select id="test" name="items" multiple class="form-control">
+                      <option value="domates">Domates</option>            
+                      <option value="biber">Biber</option>
+                      <option value="tuz">Tuz</option>
+                      <option value="bulgur">Bulgur</option>
+                      <option value="sogan">Soğan</option>
+                      <option value="marul">Marul</option>
+                      <option value="siviyag">Sıvı Yağ</option>
+                      <option value="patates">Patates</option>
+                    </select>
+          </div>
+          <button type="submit" class="btn btn-default">Ara</button>
+        </form>
+        </div>
+      </div>
+   </div>
+    </main>
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    
+</body>
+</html>
