@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', 
    if (err) return console.log(err)
 	  db = database
     db.collection('enfesco').createIndex({"$**": "text"})
-	  app.listen(5000, () => {
+	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
 })
