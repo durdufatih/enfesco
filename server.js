@@ -19,31 +19,14 @@ MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', 
 app.use(bodyParser.urlencoded({extended : true}))
 
 app.get('/', (req, res) => {
-  db.collection('enfesco').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    // renders index.ejs
-    res.render('pages/index', {foods: result})
-  })
-})
-app.get('/foods', (req, res) => {
-  db.collection('enfesco').find().toArray((err, result) => {
-    if (err) return console.log(err)
-    // renders index.ejs
-    res.render('pages/index.ejs', {foods: result})
-  })
+    res.render('pages/search.ejs', {foods: ""})
 })
 
 app.get('/about', (req, res) => {
     res.render('pages/about.ejs');
 })
 
-app.get('/search',(req,res)=>{
-
-  res.render('pages/search.ejs')
-})
-
-
-app.post('/search',(req,res)=>{
+app.post('/',(req,res)=>{
   var searchText="";
 
   if(!Array.isArray(req.body.items)){
@@ -62,7 +45,7 @@ db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta:
 .toArray((err, result) => {
     if (err) return console.log(err)
      console.log(result);
-     res.render('pages/index.ejs', {foods: result});
+     res.render('pages/search.ejs', {foods: result});
   })
    
 })

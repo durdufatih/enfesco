@@ -16,10 +16,11 @@
 <body class="container">
 
     <main>
+    <div class="row">
        <div class="my-row special text-center">
       <div class="v-m">
       <div class="row">
-         <form action="/search" method="POST">
+         <form action="/" method="POST">
           <div class="form-group">
             <label for="pwd">Malzemeler:</label>
              <select id="test" name="items" multiple class="form-control">
@@ -37,6 +38,24 @@
         </form>
         </div>
       </div>
+   </div>
+    <div class="row">
+            <ul class="list-group">
+              <% for(var i=0; i<foods.length; i++) {%>
+                <li class="list-group-item">
+                  <b><span><%= foods[i].name %></b></span><br>
+                  <span><%= foods[i].making %></span>
+                  <ul class="list-group">
+                    <%for(var j=0; j<(foods[i].ingredients).length; j++) {%>
+                     <li class="list-group-item">
+                        <b><span><%= (foods[i].ingredients[j]).name %></b></span><br>
+                     </li>
+                     <% } %>
+                  </ul>
+                </li>
+              <% } %>
+            </ul>
+        </div>
    </div>
     </main>
 
