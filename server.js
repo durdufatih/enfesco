@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser= require('body-parser')
 const app = express();
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.use('/static', express.static('public'));
 
 
 var db;
 const MongoClient = require('mongodb').MongoClient
+var ObjectId = require('mongodb').ObjectID;
 
 MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
@@ -26,6 +28,13 @@ app.get('/about', (req, res) => {
     res.render('pages/about.ejs');
 })
 
+app.get('/find/:id', (req, res) => {
+  db.collection('enfesco').find({ "_id" : ObjectId(req.params.id)}).toArray((err, result) => {
+      if (err) return console.log(err)
+       console.log(result);
+       res.render('pages/food.ejs', {food: result});
+    })
+})
 app.post('/',(req,res)=>{
   var searchText="";
 
@@ -45,7 +54,7 @@ db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta:
 .toArray((err, result) => {
     if (err) return console.log(err)
      console.log(result);
-     res.render('pages/search.ejs', {foods: result});
+     res.render('pages/foods.ejs', {foods: result});
   })
-   
+
 })
