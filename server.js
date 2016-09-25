@@ -24,8 +24,12 @@ app.get('/', (req, res) => {
     res.render('pages/search.ejs', {foods: ""})
 })
 
+app.get('/contact', (req, res) => {
+    res.render('pages/contact.ejs')
+})
+
 app.get('/about', (req, res) => {
-    res.render('pages/about.ejs');
+    res.render('pages/contact.ejs');
 })
 
 app.get('/find/:id', (req, res) => {
