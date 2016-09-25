@@ -1,78 +1,98 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="static/css/stylish-portfolio.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <% include ../partials/head %>
 </head>
 
-<body class="header">
+<body>
 
-        <div class="text-vertical-center">
-            <h1 class="text-color">ENFESCO</h1>
-            <h3  class="text-color">Malzemeleri girin &amp; <b>yemek</b> tavsiyesinde bulunalım</h3>
-            <br>
-            <form action="/" method="POST">
-             <div class="form-group">
-                 <label  style="color:white" for="pwd">Malzemeler:</label>
-                 <select id="test" name="items" multiple class="form-control col-l">
-                           <option value="domates">Domates</option>
-                           <option value="biber">Biber</option>
-                           <option value="tuz">Tuz</option>
-                           <option value="bulgur">Bulgur</option>
-                           <option value="sogan">Soğan</option>
-                           <option value="marul">Marul</option>
-                           <option value="siviyag">Sıvı Yağ</option>
-                           <option value="patates">Patates</option>
-                   </select>
-                   <br>
-             </div>
-                <button type="submit" class="btn">Ara</a>
-           </form>
-         </div>
+    <!--[if lte IE 8]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+    <![endif]-->
 
+    <!-- Header ================================================== -->
+    <header>
+    <div class="container-fluid">
+       <% include ../partials/header %>
+    </div><!-- End container -->
+    </header>
+	<!-- End Header =============================================== -->
 
-    <!-- jQuery -->
-    <script src="static/js/jquery.js"></script>
+    <!-- SubHeader =============================================== -->
+    <section class="header-video">
+    <div id="hero_video">
+        <div id="sub_content">
+            <h1>Enfesco</h1>
+            <p>
+                Elinizdeki malzemeyi verin yemek önerelim
+            </p>
+            <form method="POST" action="/">
+                <div id="custom-search-input">
+                    <div class="input-group">
+                        <select style="height: 41px;" name="items" multiple class="form-control search-query">
+                                  <option value="domates">Domates</option>
+                                  <option value="biber">Biber</option>
+                                  <option value="bulgur">Bulgur</option>
+                                  <opti.maximizeSelect2Height()on value="sogan">Soğan</option>
+                                  <option value="marul">Marul</option>
+                                  <option value="siviyag">Sıvı Yağ</option>
+                                  <option value="patates">Patates</option>
+                          </select>
+                        <span class="input-group-btn">
+                          <input type="submit" class="btn_search" value="submit">
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div><!-- End sub_content -->
+    </div>
+    <img src="static/img/video_fix.png" alt="" class="header-video--media" data-video-src="static/video/intro" data-teaser-source="static/video/intro" data-provider="Vimeo" data-video-width="1920" data-video-height="960">
+    <div id="count" class="hidden-xs">
+        <ul>
+            <li><span class="number">670</span> Yemek</li>
+            <li><span class="number">20000</span> Malzeme</li>
+            <li><span class="number">50</span> Yemek Türü</li>
+        </ul>
+    </div>
+    </section><!-- End Header video -->
+    <footer>
+       <% include ../partials/footer %>
+    </footer>
+    <!-- End Footer =============================================== -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="static/js/bootstrap.min.js"></script>
+<div class="layer"></div><!-- Mobile menu overlay mask -->
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script type="text/javascript">
+<!-- COMMON SCRIPTS -->
+<script src="static/js/jquery-1.11.2.min.js"></script>
+<script src="static/js/common_scripts_min.js"></script>
+<script src="static/js/functions.js"></script>
 
-      $( document ).ready(function() {
-        $("select").select2();
-      });
-    </script>
+<!-- SPECIFIC SCRIPTS -->
+<script src="static/js/video_header.js"></script>
+<script>
+$(document).ready(function() {
+	'use strict';
+   	  HeaderVideo.init({
+      container: $('.header-video'),
+      header: $('.header-video--media'),
+      videoTrigger: $("#video-trigger"),
+      autoPlayVideo: true
+    });
 
+});
+</script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script type="text/javascript">
+
+  $( document ).ready(function() {
+    $("select").select2();
+  });
+</script>
 
 
 </body>
-
 </html>
