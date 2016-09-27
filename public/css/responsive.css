@@ -3,7 +3,7 @@
 /*============================================================================================*/
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-	#sub_content h1{font-size:50px;}
+	#sub_content h1{font-size:50px;font-weight: bold}
 }
 @media (max-width: 1024px){
 .parallax-window-2 {background-attachment:scroll;}
@@ -16,9 +16,9 @@
 	#sub_content h1{font-size:42px;}
 	.box_home{min-height: inherit;}
 	.main-menu-2 ul{margin:2px 0 0 0;}
-	
+
 	a.button_intro, .button_intro,a.button_intro.outilne, .button_intro.outline {display:none;}
-	
+
 	.high_light{ text-align:center;}
 	.high_light a{position:static; margin-top:30px;}
 }
@@ -34,29 +34,29 @@
 	#home #subheader{height: 240px;}
 	#hero_video > div h1{margin-top:0;}
 	.box_home#one {margin-top: 40px;}
-		
+
 	#sub_content{padding:0 30px;}
 	#sub_content h1{font-size:24px;}
 	#home #subheader #sub_content p , #hero_video #sub_content p{ display:none}
 	#custom-search-input, #custom-search-input .search-query {width:400px;}
-	
+
 	.main_title {font-size:14px; margin-bottom:10px; }
 	.main_title h2 {font-size:24px; }
 	.main_title p {font-size:14px; margin-bottom:0;}
-	
+
 	hr.more_margin {margin-top: 15px;margin-bottom:20px;}
-	
+
 	footer{padding:10px 0;}
-	
+
 	/* Parallax bg */
 	.parallax-window#short, .parallax-window{height: 240px;min-height:240px;}
 	#short #subheader, 	#subheader, .parallax-content{height:240px;}
 	.parallax-content {font-size:12px !important;}
 	.parallax-content h3, .parallax-content-2 div h3, .high_light h3{font-size:30px !important;}
 	.parallax-content i, .parallax-content-2 div i{font-size:30px !important;}
-		
+
 	.strip_list, .strip_list .go_to a.btn_1{ margin-top:20px; width:100%;}
-	
+
 	/* Responsive table cart */
 	.table.cart-list {margin-bottom:30px; }
 	.table.cart-list, .table.cart-list thead, .table.cart-list tbody, .table.cart-list th, .table.cart-list td, .table.cart-list  tr{ display: block; border:0; }
@@ -68,10 +68,10 @@
 	.table.cart-list td:nth-of-type(2):before { content: "Price"; font-weight: bold; color:#111;}
 	.table.cart-list td:nth-of-type(3):before { content: "Add to cart"; font-weight: bold;  color:#111;}
 	.thumb_cart{ display:none;}
-	
+
 	.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {font-size: 12px;}
-	.bs-wizard > .bs-wizard-step > .bs-wizard-dot {margin-top: -17px;} 
-	
+	.bs-wizard > .bs-wizard-step > .bs-wizard-dot {margin-top: -17px;}
+
 	/* Mobile navigation for categories left column */
 	.styled-select-cat select {
 	   background: transparent;
@@ -96,7 +96,7 @@
 		-webkit-border-radius: 3px;
 	   -moz-border-radius: 3px;
 	   border-radius: 3px;
-	   } 
+	   }
 	  .styled-select-cat:before {
 	   font-style: normal;
 	   font-weight: normal;
@@ -106,10 +106,10 @@
 	   position:absolute;
 	   left:15px;
 	   top:12px;
-	   } 
+	   }
 	.styled-select-cat::-ms-expand, {display: none;}
 	.styled-select-cat select:focus { outline:none;}
-	
+
 	.margin_60 {padding-top:30px; padding-bottom:30px;}
 	.margin_60_35 {padding-top:30px; padding-bottom:10px;}
 	#sub_content #thumb{ display:none;}
@@ -118,13 +118,13 @@
 	.login_icon { display:none;}
 	.modal-popup {padding:10px 30px 1px 30px;}
 	.popup-form {width: 100%;margin: 60px auto; margin-bottom:30px;}
-	
-	/* Updates v.1.1 */ 
+
+	/* Updates v.1.1 */
 	/*General*/
 	a.load_more_bt{ margin-bottom:20px;}
 }
 
-/* Extra Small Devices, Phones */ 
+/* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
 	#sub_content{font-size:12px;}
 	#sub_content h1{font-size:20px;}
@@ -137,7 +137,7 @@
 	h3.slide_typo {letter-spacing:0;}
 }
 
-/* Extra extra Small Devices */ 
+/* Extra extra Small Devices */
 @media only screen and (max-width : 320px) {
 	#sub_content{font-size:12px;}
 	#sub_content h1{font-size:16px;}
