@@ -58,9 +58,11 @@
                 <%= foods[i].category%>
               </div>
               <div class="type">
-                 <%for(var j=0; j<(foods[i].ingredients).length; j++) {%>
+                 <%for(var j=0; j<(foods[i].ingredients).length; j++) {
+                   if((foods[i].ingredients[j]).name){%>
                         <span style="color:<%=foods[i].ingredients[j].id%>">-<%=(foods[i].ingredients[j]).name;%></span>
-                    <%}%>
+                    <%}
+                  }%>
 
               </div>
               <ul>
