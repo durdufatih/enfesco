@@ -66,7 +66,7 @@
               <ul>
                   <li class="submenu">
                   <a href="/" class="show-submenu">Anasayfa</i></a>
-                  </li>                
+                  </li>
                   <li><a href="/about">Hakkımızda</a></li>
                   <li><a href="/contact">İletişim</a></li>
               </ul>
@@ -127,7 +127,8 @@
 					<h3>Malzemeler <i class="icon_cart_alt pull-right"></i></h3>
 					<table class="table table_summary">
 					<tbody>
-            <%for(var j=0; j<(food[0].ingredients).length; j++) {%>
+            <%for(var j=0; j<(food[0].ingredients).length; j++) {
+              if((food[0].ingredients[j]).name){%>
               <tr>
     						<td>
     							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong><%=(food[0].ingredients[j]).count%></strong><%= (food[0].ingredients[j]).type%> <%= (food[0].ingredients[j]).name %>
@@ -136,7 +137,8 @@
     							<strong class="pull-right">$11</strong>
     						</td>-->
     					</tr>
-             <% } %>
+             <% }
+               } %>
 					</tbody>
 					</table>
 

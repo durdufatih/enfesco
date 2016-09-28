@@ -35,6 +35,7 @@
                 <li><a href="/">Anasayfa</a></li>
                 <li><a href="/">Yemekler</a></li>
                 <li>Sonuçlar</li>
+
             </ul>
         </div>
     </div><!-- Position -->
@@ -58,8 +59,9 @@
               </div>
               <div class="type">
                  <%for(var j=0; j<(foods[i].ingredients).length; j++) {%>
-                   -<%- (foods[i].ingredients[j]).name %> &nbsp &nbsp
-                            <% } %>
+                        <span>-<%=(foods[i].ingredients[j]).name;%></span>
+                    <%}%>
+
               </div>
               <ul>
                 <li>Malzemeler Tamam mı?<i class="icon_check_alt2 ok"></i></li>
