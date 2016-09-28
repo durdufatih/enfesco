@@ -70,6 +70,7 @@ app.post('/',(req,res)=>{
           for(var l=0; l<req.body.items.length; l++){
               if(req.body.items[l].includes(result[j].ingredients[i].name)){
                 itemCount--;
+                result[j].ingredients[i].id="green";
               }
           }
         }
@@ -84,6 +85,10 @@ app.post('/',(req,res)=>{
       result.sort(function(a, b) {
           return parseFloat(b.score) - parseFloat(a.score);
       });
+      for (var t = 0; t < result.length; t++) {
+        console.log(result[t]);
+      }
+
 
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
   })
