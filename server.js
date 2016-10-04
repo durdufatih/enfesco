@@ -13,6 +13,7 @@ MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', 
    if (err) return console.log(err)
 	  db = database
     db.collection('enfesco').createIndex({"$**": "text"})
+    db.collection('items').createIndex({"$**": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
@@ -38,7 +39,15 @@ app.get('/find/:id', (req, res) => {
        res.render('pages/food.ejs', {food: result});
     })
 })
+app.post('/item/search', (req, res) => {
+  console.log(req.body.q.term);
+ db.collection('items').find().toArray((err, result) => {
+      if (err) return console.log(err)
 
+        res.send(JSON.stringify(result));
+      
+    })
+})
 app.post('/',(req,res)=>{
   var searchText="";
   if(!Array.isArray(req.body.items)){
@@ -85,9 +94,6 @@ app.post('/',(req,res)=>{
       result.sort(function(a, b) {
           return parseFloat(b.score) - parseFloat(a.score);
       });
-      for (var t = 0; t < result.length; t++) {
-        console.log(result[t]);
-      }
 
 
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});

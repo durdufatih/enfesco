@@ -4,6 +4,7 @@
 <html>
 <head>
     <% include ../partials/head %>
+    <sy
 </head>
 
 <body>
@@ -31,11 +32,11 @@
             <form method="POST" action="/">
                 <div id="custom-search-input">
                     <div class="input-group">
-                        <select style="height: 41px;" name="items" multiple class="form-control search-query">
+                        <select  style="height: 41px;" name="items" multiple class="form-control search-query js-data-example-ajax">
                                   <option value="domates">Domates</option>
                                   <option value="biber">Biber</option>
                                   <option value="bulgur">Bulgur</option>
-                                  <opti.maximizeSelect2Height()on value="sogan">Soğan</option>
+                                  <option value="sogan">Soğan</option>
                                   <option value="marul">Marul</option>
                                   <option value="siviyag">Sıvı Yağ</option>
                                   <option value="patates">Patates</option>
@@ -80,18 +81,36 @@ $(document).ready(function() {
       videoTrigger: $("#video-trigger"),
       autoPlayVideo: true
     });
+    $(".js-data-example-ajax").select2({
+        minimumInputLength: 2,
+        ajax: {
+            url: "/item/search",
+            dataType: 'json',
+            type: "POST",
+            quietMillis: 50,
+            data: function(term) {
+              return {
+                  q: term
+              };
+            },
+          processResults: function (data, page) {
+            console.log(data);
+                return {
+                    results: data
+                };
+            }
+             
+}           
+     });
+     
+  });
 
-});
+
+
 </script>
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script type="text/javascript">
-
-  $( document ).ready(function() {
-    $("select").select2();
-  });
-</script>
 
 
 </body>
