@@ -4,7 +4,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use('/static', express.static('public'));
 
-
 var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
@@ -12,7 +11,7 @@ var ObjectId = require('mongodb').ObjectID;
 MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-    db.collection('enfesco').createIndex({"$**": "text"})
+    db.collection('enfesco').createIndex({"ingredients.name": 1})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
@@ -47,48 +46,18 @@ app.post('/',(req,res)=>{
   else
   {
   for (var i = 0, len = req.body.items.length; i < len; i++) {
-     if(i !=0 && i!=req.body.items.length)
+     if(i !=0)
        searchText=searchText+" "+req.body.items[i]+" ";
+     else if(i!=req.body.items.length)
+       searchText=searchText+" "+req.body.items[i];
      else
         searchText=searchText+" "+req.body.items[i];
    }
   }
+  console.log(searchText);
   db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
-      /*for(var j=0; j<result.length; j++){
-        var items=result[j].ingredients.length;
-        console.log(items);
-        for(var i=0; i<(result[j].ingredients).length; j++){
-          console.log("Search Text" +searchText +" item: " +result[j].ingredients[i].name);
-        }
-      }*/
-      for(var j=0; j<result.length; j++){
-        var count=result[j].ingredients.length;
-        var itemCount=count;
-        for(var i=0; i<result[j].ingredients.length; i++){
-          for(var l=0; l<req.body.items.length; l++){
-              if(req.body.items[l].includes(result[j].ingredients[i].name)){
-                itemCount--;
-                result[j].ingredients[i].id="green";
-              }
-          }
-        }
-        if(itemCount-count==0)
-        {
-          result[j].score=0;
-        }else {
-          result[j].score=((count-itemCount)/count)*100;
-        }
-
-      }
-      result.sort(function(a, b) {
-          return parseFloat(b.score) - parseFloat(a.score);
-      });
-      for (var t = 0; t < result.length; t++) {
-        console.log(result[t]);
-      }
-
 
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
   })
