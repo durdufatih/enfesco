@@ -52,9 +52,9 @@
     <img src="static/img/video_fix.png" alt="" class="header-video--media" data-video-src="static/video/intro" data-teaser-source="static/video/intro" data-provider="Vimeo" data-video-width="1920" data-video-height="960">
     <div id="count" class="hidden-xs">
         <ul>
-            <li><span class="number">670</span> Yemek</li>
-            <li><span class="number">3000</span> Malzeme</li>
-            <li><span class="number">50</span> Yemek Türü</li>
+            <li><span class="number">1000000</span> Yemek</li>
+            <li><span class="number">20000</span> Malzeme</li>
+            <li><span class="number">200</span> Yemek Türü</li>
         </ul>
     </div>
     </section><!-- End Header video -->
@@ -82,7 +82,6 @@ $(document).ready(function() {
       autoPlayVideo: true
     });
     $(".js-data-example-ajax").select2({
-        minimumInputLength: 2,
         ajax: {
             url: "/item/search",
             dataType: 'json',
@@ -99,10 +98,10 @@ $(document).ready(function() {
                     results: data
                 };
             }
-             
-}           
+
+}
      });
-     
+
   });
 
 

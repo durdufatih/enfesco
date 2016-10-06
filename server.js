@@ -11,12 +11,8 @@ var ObjectId = require('mongodb').ObjectID;
 MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-<<<<<<< HEAD
     db.collection('enfesco').createIndex({"ingredients.name": 1})
-=======
-    db.collection('enfesco').createIndex({"$**": "text"})
-    db.collection('items').createIndex({"$**": "text"})
->>>>>>> 8df3cf51ce0e43ba10038525109043242eb23335
+    db.collection('items').createIndex({"name": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
@@ -33,7 +29,7 @@ app.get('/contact', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.render('pages/contact.ejs');
+    res.render('pages/about.ejs');
 })
 
 app.get('/find/:id', (req, res) => {
