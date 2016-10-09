@@ -11,7 +11,7 @@ var ObjectId = require('mongodb').ObjectID;
 MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-    db.collection('enfesco').createIndex({"ingredients.name": 1})
+    db.collection('enfesco').createIndex({"ingredients.name": "text"})
     db.collection('items').createIndex({"name": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
@@ -63,8 +63,8 @@ app.post('/',(req,res)=>{
         searchText=searchText+" "+req.body.items[i];
    }
   }
-  console.log(searchText);
-  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
+  console.log('\"\\"'+searchText+'\\"');
+  db.collection('enfesco').find({ $text: { $search : '\"\"'+searchText+'\\"'}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
 
