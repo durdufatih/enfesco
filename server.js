@@ -11,8 +11,7 @@ var ObjectId = require('mongodb').ObjectID;
 MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-    db.collection('enfesco').createIndex({"ingredients.name": "text"})
-    db.collection('items').createIndex({"name": "text"})
+    db.collection('enfesco').createIndex({"searchText": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
@@ -30,6 +29,20 @@ app.get('/contact', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.render('pages/about.ejs');
+})
+
+app.get('/data', (req, res) => {
+  db.collection('enfesco').find().toArray((err, result) => {
+      for (var i = 0; i < result.length; i++) {
+        var searchText="";
+        for (var j = 0; j < result[i].ingredients.length; j++) {
+           searchText=searchText+result[i].ingredients[j].name+" ";
+
+        }
+        console.log(searchText);
+         db.collection('enfesco').update({"_id" :ObjectId(result[i]._id) },{$set : {"searchText":searchText}})
+      }
+    })
 })
 
 app.get('/find/:id', (req, res) => {
@@ -63,11 +76,9 @@ app.post('/',(req,res)=>{
         searchText=searchText+" "+req.body.items[i];
    }
   }
-  console.log('\"\\"'+searchText+'\\"');
-  db.collection('enfesco').find({ $text: { $search : '\"\"'+searchText+'\\"'}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
+  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
-
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
   })
 
