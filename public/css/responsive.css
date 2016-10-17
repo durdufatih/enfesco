@@ -26,7 +26,7 @@
 @media only screen and (max-width : 768px) {
 	#sub_content h1{ font-size:42px;}
 	.strip_list, .strip_list .go_to{height:auto;}
-	#hero_video{ background: #333 url(../img/sub_header_home.jpg); background-size:cover; background-position: center center;}
+	#hero_video{ background: #333 url(../img/burger.jpg); background-size:cover; background-position: center center;}
 }
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) {
