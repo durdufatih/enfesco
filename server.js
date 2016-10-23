@@ -8,7 +8,7 @@ var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
 
-MongoClient.connect('mongodb://localhost:27017/enfesco', (err, database) => {
+MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
     db.collection('enfesco').createIndex({"searchText": "text"})
