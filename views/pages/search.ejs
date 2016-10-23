@@ -35,32 +35,9 @@
                 <div id="custom-search-input">
                     <div class="input-group">
                         <select  style="height: 41px;" name="items" multiple class="form-control search-query js-data-example-ajax">
-                                  <option value="domates">Domates</option>
-                                  <option value="biber">Biber</option>
-                                  <option value="bulgur">Bulgur</option>
-                                  <option value="sogan">Soğan</option>
-                                  <option value="marul">Marul</option>
-                                  <option value="siviyag">Sıvı Yağ</option>
-                                  <option value="patates">Patates</option>
-                                  <option value="yumurta">Yumurta</option>
-                                  <option value="peynir">Peynir</option>
-                                  <option value="tavuk">Tavuk</option>
-                                  <option value="hindi">Hindi</option>
-                                  <option value="kıyma">Kıyma</option>
-                                  <option value="pirinç">Pirinç</option>
-                                  <option value="makarna">Makarna</option>
-                                  <option value="patlıcan">Patlıcan</option>
-                                  <option value="fasulye">Fasulye</option>
-                                  <option value="mantar">Mantar</option>
-                                  <option value="bezelye">Bezelye</option>
-                                  <option value="kabak">Kabak</option>
-                                  <option value="mısır">Mısır</option>
-                                  <option value="havuç">Havuç</option>
-                                  <option value="enginar">Enginar</option>
-                                  <option value="ıspanak">Ispanak</option>
-                                  <option value="havuç">Havuç</option>
-                                  <option value="lahana">Lahana</option>
-                                  <option value="salça">Salça</option>
+                          <%for(var j=0; j<(items).length; j++) {%>
+                              <option value="<%=items[j].name%>"><%=items[j].shownName%></option>
+                           <%}%>
                           </select>
                         <span class="input-group-btn">
                           <input type="submit" class="btn_search" value="submit">
@@ -73,9 +50,9 @@
     <img src="static/img/video_fix.png" alt="" class="header-video--media" data-video-src="static/video/intro" data-teaser-source="static/video/intro" data-provider="Vimeo" data-video-width="1920" data-video-height="960">
     <div id="count" class="hidden-xs">
         <ul>
-            <li><span class="number">1000000</span> Yemek</li>
-            <li><span class="number">20000</span> Malzeme</li>
-            <li><span class="number">200</span> Yemek Türü</li>
+            <li><span class="number">700</span> Yemek</li>
+            <li><span class="number">100</span> Malzeme</li>
+            <li><span class="number">35</span> Yemek Türü</li>
         </ul>
     </div>
     </section><!-- End Header video -->
