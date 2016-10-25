@@ -8,7 +8,7 @@ var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
 
-MongoClient.connect('mongodb://enfesco:123456@ds029456.mlab.com:29456/enfesco', (err, database) => {
+MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
     db.collection('enfesco').createIndex({"searchText": "text"})
@@ -22,9 +22,8 @@ app.use(bodyParser.urlencoded({extended : true}))
 app.get('/', (req, res) => {
   db.collection('items').find().toArray((err, result) => {
       if (err) return console.log(err)
-      res.render('pages/search.ejs', {items: result})
+       res.render('pages/search.ejs', {items: result})
     })
-  //  res.render('pages/search.ejs', {foods: ""})
 })
 
 
@@ -82,7 +81,7 @@ app.post('/',(req,res)=>{
         searchText=searchText+" "+req.body.items[i];
    }
   }
-  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {$meta: "textScore"}}).sort({score:{$meta:"textScore"}})
+  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
