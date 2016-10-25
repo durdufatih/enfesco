@@ -45,15 +45,17 @@ app.get('/data', (req, res) => {
 
         }
         console.log(searchText);
-         db.collection('enfesco').update({"_id" :ObjectId(result[i]._id) },{$set : {"searchText":searchText}})
+         db.collection('enfesco').update({"_id" :result[i]._id },{$set : {"searchText":searchText}})
       }
     })
 })
 
 
 app.get('/find/:id', (req, res) => {
-  db.collection('enfesco').find({ "_id" : ObjectId(req.params.id)}).toArray((err, result) => {
+  console.log("Hello");
+  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
+      console.log(result);
        res.render('pages/food.ejs', {food: result});
     })
 })
@@ -79,11 +81,18 @@ app.post('/',(req,res)=>{
        searchText=searchText+" "+req.body.items[i];
      else
         searchText=searchText+" "+req.body.items[i];
+
+          /*searchText=searchText+'\\\"'+req.body.items[i]+'\\\"';*/
+
+        console.log(searchText);
    }
+   //searchText="\""+searchText+"\"";
+   console.log(searchText);
   }
   db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
+      console.log(result);
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
   })
 
