@@ -89,7 +89,7 @@ app.post('/',(req,res)=>{
    //searchText="\""+searchText+"\"";
    console.log(searchText);
   }
-  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}})
+  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}}).sort({score:{'$meta': "textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
       console.log(result);
