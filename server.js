@@ -55,7 +55,7 @@ app.get('/find/:id', (req, res) => {
   console.log("Hello");
   db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
-      console.log(result);
+      console.log(req.body.items);
        res.render('pages/food.ejs', {food: result});
     })
 })
