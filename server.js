@@ -3,6 +3,10 @@ const bodyParser= require('body-parser')
 const app = express();
 app.set('view engine', 'ejs');
 app.use('/static', express.static('public'));
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
+var pagination = require('pagination');
+
 
 var db;
 const MongoClient = require('mongodb').MongoClient
@@ -17,13 +21,49 @@ MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => 
 	  })
 })
 
-app.use(bodyParser.urlencoded({extended : true}))
+
 
 app.get('/', (req, res) => {
   db.collection('items').find().toArray((err, result) => {
       if (err) return console.log(err)
        res.render('pages/search.ejs', {items: result})
     })
+})
+
+app.get('/api/items', (req, res) => {
+  db.collection('items').find().toArray((err, result) => {
+      var json = JSON.stringify(result);
+      res.end(json);
+    })
+})
+
+app.post('/api/foods', (req, res) => {
+  var searchText="";
+  console.log(req.body);
+  if(!Array.isArray(req.body.items)){
+    searchText = req.body.items;
+  }
+  else
+  {
+  for (var i = 0, len = req.body.items.length; i < len; i++) {
+     if(i !=0)
+       searchText=searchText+" "+req.body.items[i]+" ";
+     else if(i!=req.body.items.length)
+       searchText=searchText+" "+req.body.items[i];
+     else
+        searchText=searchText+" "+req.body.items[i];
+
+          /*searchText=searchText+'\\\"'+req.body.items[i]+'\\\"';*/
+
+   }
+   //searchText="\""+searchText+"\"";
+  }
+  db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}}).sort({score:{'$meta': "textScore"}})
+  .skip(parseInt(req.body.page)*parseInt(req.body.count)).limit(parseInt(req.body.count)).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.json(result);
+  })
+
 })
 
 

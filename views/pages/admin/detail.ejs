@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<html>
+<head>
+  <!-- BASE CSS -->
+  <link href="../../static/css/base.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container">
+<form>
+  <br><br><br>
+  <div class="form-group">
+    <label for="nameInput">Food Name</label>
+    <input type="input" class="form-control" value="<%= food[0].name %>" id="nameInput" placeholder="Food Name">
+  </div>
+  <div class="form-group">
+    <label for="categoryInput">Category</label>
+    <input type="input" class="form-control" id="categoryInput" value="<%=(food[0].category)%>" placeholder="Category">
+  </div>
+
+  <div class="form-group">
+    <label for="preTimeInput">Prep Time</label>
+    <input type="input" class="form-control" id="preTimeInput" value="<%=(food[0].preTime)%>" placeholder="Prep Time">
+  </div>
+
+  <div class="form-group">
+    <label for="cookTimeInput">Cook Time</label>
+    <input type="input" class="form-control" id="cookTimeInput" value="<%=(food[0].cookTime)%>" placeholder="Cook Time">
+  </div>
+
+  <div class="form-group">
+    <label for="cookingPersonInput">Cooking Person</label>
+    <input type="input" class="form-control" id="cookingPersonInput" value="<%=(food[0].cookingPerson)%>" placeholder="cooking Person">
+  </div>
+
+  <div class="form-group">
+    <label for="searchInput">Search Text</label>
+    <input type="input" class="form-control" id="cookingPersonInput" value="<%=(food[0].searchText)%>" placeholder="cooking Person">
+  </div>
+
+  <div class="form-group">
+    <label for="makingInput">Making</label>
+    <textarea class="form-control" id="makingInput" rows="8" placeholder="Making"><%=(food[0].making)%></textarea>
+  </div>
+  <t>  <%for(var j=0; j<(food[0].ingredients).length; j++) {%>
+      <div class="form-group">
+        <label for="makingInput">Name</label>
+        <input type="input" class="form-control" id="item" value="<%=(food[0].ingredients[j]).name)%>" placeholder="cooking Person">
+        <label for="makingInput">type</label>
+          <input type="input" class="form-control" id="item" value="<%=(food[0].ingredients[j]).type)%>" placeholder="cooking Person">
+          <label for="makingInput">Count</label>
+            <input type="input" class="form-control" id="item" value="<%=(food[0].ingredients[j]).count)%>" placeholder="cooking Person">
+      </div>
+    <%}%></t>
+  <button type="submit" class="btn btn-default">Kaydet</button>
+</form>
+</div>
+</body>
