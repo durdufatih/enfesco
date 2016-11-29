@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/items', (req, res) => {
   db.collection('items').find().toArray((err, result) => {
-      var json = JSON.stringify(result);
+      var json = JSON.stringify({items:result});
       res.end(json);
     })
 })
@@ -61,7 +61,7 @@ app.post('/api/foods', (req, res) => {
   db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}}).sort({score:{'$meta': "textScore"}})
   .skip(parseInt(req.body.page)*parseInt(req.body.count)).limit(parseInt(req.body.count)).toArray((err, result) => {
       if (err) return console.log(err)
-      res.json(result);
+      res.json({foods:result});
   })
 
 })
