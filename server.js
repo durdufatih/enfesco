@@ -92,10 +92,10 @@ app.get('/data', (req, res) => {
 
 
 app.get('/find/:id', (req, res) => {
-  console.log("Hello");
-  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
+  console.log(req.params.id);
+  db.collection('enfesco').find({ "id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
-      console.log(req.body.items);
+      console.log(result);
        res.render('pages/food.ejs', {food: result});
     })
 })
