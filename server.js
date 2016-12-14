@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 var pagination = require('pagination');
 
 
+
 var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
@@ -39,7 +40,7 @@ app.get('/api/items', (req, res) => {
 
 app.post('/api/find', (req, res) => {
   console.log(req.body.id);
-  db.collection('enfesco').find({ "_id" : req.body.id}).toArray((err, result) => {
+  db.collection('enfesco').find({ '_id' : new ObjectId(req.body.id)}).toArray((err, result) => {
       if (err) return console.log(err)
       var json = JSON.stringify({item:result});
        res.end(json);
@@ -103,7 +104,7 @@ app.get('/data', (req, res) => {
 
 app.get('/find/:id', (req, res) => {
   console.log(req.params.id);
-  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
+  db.collection('enfesco').find({ "_id" : new ObjectId(req.params.id)}).toArray((err, result) => {
       if (err) return console.log(err)
       console.log(result);
        res.render('pages/food.ejs', {food: result});
