@@ -37,8 +37,18 @@ app.get('/api/items', (req, res) => {
     })
 })
 
+app.post('/api/find', (req, res) => {
+  console.log(req.body.id);
+  db.collection('enfesco').find({ "_id" : req.body.id}).toArray((err, result) => {
+      if (err) return console.log(err)
+      var json = JSON.stringify({item:result});
+       res.end(json);
+    })
+})
+
 app.post('/api/foods', (req, res) => {
   var searchText="";
+  console.log(req);
   console.log(req.body);
   if(!Array.isArray(req.body.items)){
     searchText = req.body.items;
@@ -93,12 +103,13 @@ app.get('/data', (req, res) => {
 
 app.get('/find/:id', (req, res) => {
   console.log(req.params.id);
-  db.collection('enfesco').find({ "id" : req.params.id}).toArray((err, result) => {
+  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
       console.log(result);
        res.render('pages/food.ejs', {food: result});
     })
 })
+
 app.post('/item/search', (req, res) => {
   console.log(req.body.q.term);
  db.collection('items').find().toArray((err, result) => {
