@@ -11,7 +11,7 @@ var ObjectId = require('mongodb').ObjectID;
 MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-    db.collection('enfesco').createIndex({"searchText": "text"})
+    //db.collection('enfesco').createIndex({"searchText": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
