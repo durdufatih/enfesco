@@ -6,11 +6,13 @@ app.use('/static', express.static('public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 var pagination = require('pagination');
+var YouTube = require('youtube-node');
 
-
+var youTube = new YouTube();
 var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
+youTube.setKey('AIzaSyBNq9B6345OOESbftbydnyV17QdX3HrSAk');
 
 MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => {
    if (err) return console.log(err)
@@ -23,6 +25,16 @@ MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => 
 
 
 
+app.get('/youtube', (req, res) => {
+  youTube.search('Patlıcan ', 1, function(error, result) {
+  if (error) {
+    console.log(error);
+  }
+  else {
+    res.end(JSON.stringify(result, null, 1));
+  }
+  });
+})
 app.get('/', (req, res) => {
   db.collection('items').find().toArray((err, result) => {
       if (err) return console.log(err)
@@ -77,16 +89,32 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/data', (req, res) => {
+  console.log("Gello");
   db.collection('enfesco').find().toArray((err, result) => {
-      for (var i = 0; i < result.length; i++) {
-        var searchText="";
+    console.log(result.length);
+      for (var i = 0; i <result.length; i++) {
+        /*var searchText="";
         for (var j = 0; j < result[i].ingredients.length; j++) {
            searchText=searchText+result[i].ingredients[j].name+" ";
 
         }
-        console.log(searchText);
-         db.collection('enfesco').update({"_id" :result[i]._id },{$set : {"searchText":searchText}})
+        console.log(searchText);*/
+        console.log(result[i]._id)
+         db.collection('enfesco').update({"_id" :result[i]._id },{$set : {"id":result[i]._id }})
+         console.log(db.collection('enfesco').find({"_id" :result[i]._id }).id);
+         /*youTube.search(result[i].name, 1, function(error, food) {
+           if (error) {
+             console.log(error);
+           }
+           else {
+             console.log(food.items[0].thumbnails)
+             console.log(food.items[0]);
+             db.collection('enfesco').update({"_id" :result[i]._id },{$set : {"imageDefault":food.items[0].thumbnails.default.url,"imageMedium":food.items[0].thumbnails.medium.url,"imageHigh":food.items[0].thumbnails.high.url}})
+
+           }
+         });*/
       }
+
     })
 })
 
