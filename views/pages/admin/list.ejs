@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<html>
+<head>
+    <% include ../../partials/head %>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Veriler</h2>
+  <p>Detaydan düzeltme işlemi yapabilirsiniz</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Yemek İsmi</th>
+        <th>Malzemeler</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0; i<foods.length; i++) {%>
+      <tr>
+        <td><%= foods[i].name%></td>
+        <td> <%for(var j=0; j<(foods[i].ingredients).length; j++) {
+           if((foods[i].ingredients[j]).name){%>
+                <span >-<%=(foods[i].ingredients[j]).name;%></span>
+            <%}
+          }%></td>
+        <td><a href="/admin/find/<%= foods[i]._id %>">Detay</a></td>
+      </tr>
+       <% } %>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
