@@ -9,6 +9,7 @@ var pagination = require('pagination');
 var YouTube = require('youtube-node');
 
 var youTube = new YouTube();
+
 var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
@@ -49,9 +50,16 @@ app.get('/api/items', (req, res) => {
     })
 })
 
+app.post('/api/find', (req, res) => {
+  db.collection('enfesco').find({ "id" : req.body.id}).toArray((err, result) => {
+      if (err) return console.log(err)
+      var json = JSON.stringify({item:result});
+       res.end(json);
+    })
+})
+
 app.post('/api/foods', (req, res) => {
   var searchText="";
-  console.log(req.body);
   if(!Array.isArray(req.body.items)){
     searchText = req.body.items;
   }
@@ -64,11 +72,8 @@ app.post('/api/foods', (req, res) => {
        searchText=searchText+" "+req.body.items[i];
      else
         searchText=searchText+" "+req.body.items[i];
-
-          /*searchText=searchText+'\\\"'+req.body.items[i]+'\\\"';*/
-
    }
-   //searchText="\""+searchText+"\"";
+
   }
   db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}}).sort({score:{'$meta': "textScore"}})
   .skip(parseInt(req.body.page)*parseInt(req.body.count)).limit(parseInt(req.body.count)).toArray((err, result) => {
@@ -77,8 +82,6 @@ app.post('/api/foods', (req, res) => {
   })
 
 })
-
-
 
 app.get('/contact', (req, res) => {
     res.render('pages/contact.ejs')
@@ -120,13 +123,14 @@ app.get('/data', (req, res) => {
 
 
 app.get('/find/:id', (req, res) => {
-  console.log(req.params.id);
-  db.collection('enfesco').find({ "id" : req.params.id}).toArray((err, result) => {
+  console.log(new ObjectId(req.params.id));
+  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
       console.log(result);
        res.render('pages/food.ejs', {food: result});
     })
 })
+
 app.post('/item/search', (req, res) => {
   console.log(req.body.q.term);
  db.collection('items').find().toArray((err, result) => {
@@ -148,11 +152,9 @@ app.post('/',(req,res)=>{
      else if(i!=req.body.items.length)
        searchText=searchText+" "+req.body.items[i];
      else
-        searchText=searchText+" "+req.body.items[i];
+        searchText=searchText+" "+req.body.items[i];      
 
-          /*searchText=searchText+'\\\"'+req.body.items[i]+'\\\"';*/
-
-        console.log(searchText);
+        console.log(searchText);<<<<<<< HEAD
    }
    //searchText="\""+searchText+"\"";
    console.log(searchText);
