@@ -18,7 +18,7 @@ youTube.setKey('AIzaSyBNq9B6345OOESbftbydnyV17QdX3HrSAk');
 MongoClient.connect('mongodb://45.32.159.243:27017/enfesco', (err, database) => {
    if (err) return console.log(err)
 	  db = database
-    //db.collection('enfesco').createIndex({"searchText": "text"})
+    db.collection('enfesco').createIndex({"searchText": "text"})
 	  app.listen(process.env.PORT || 5000, () => {
 	    console.log('listening on 5000')
 	  })
@@ -103,7 +103,7 @@ app.get('/data', (req, res) => {
         }
         console.log(searchText);*/
         console.log(result[i]._id)
-         db.collection('enfesco').update({"_id" :result[i]._id },{$set : {"id":result[i]._id }})
+         db.collection('enfesco').update({"_id" :new ObjectId(result[i]._id) },{$set : {"id":new ObjectId(result[i]._id).toString()}})
          console.log(db.collection('enfesco').find({"_id" :result[i]._id }).id);
          /*youTube.search(result[i].name, 1, function(error, food) {
            if (error) {
@@ -124,7 +124,7 @@ app.get('/data', (req, res) => {
 
 app.get('/find/:id', (req, res) => {
   console.log(new ObjectId(req.params.id));
-  db.collection('enfesco').find({ "_id" : req.params.id}).toArray((err, result) => {
+  db.collection('enfesco').find({ "id" : req.params.id}).toArray((err, result) => {
       if (err) return console.log(err)
       console.log(result);
        res.render('pages/food.ejs', {food: result});
@@ -152,9 +152,9 @@ app.post('/',(req,res)=>{
      else if(i!=req.body.items.length)
        searchText=searchText+" "+req.body.items[i];
      else
-        searchText=searchText+" "+req.body.items[i];      
+        searchText=searchText+" "+req.body.items[i];
 
-        console.log(searchText);<<<<<<< HEAD
+        console.log(searchText);
    }
    //searchText="\""+searchText+"\"";
    console.log(searchText);
