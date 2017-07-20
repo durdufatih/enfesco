@@ -87,7 +87,7 @@
         <!--<i class="icon_star"></i> (<small><a href="detail_page_2.html">Read 98 reviews</a></small>)</div>-->
         <h1><b><%=food[0].name%></b></h1>
                     <div><em><b><%=(food[0].category)%></b></em></div>
-                    <div><i class="icon_pin"></i>Hazırlanması süresi:<%=(food[0].preTime)%>dk -  Kişi Sayısı: <%- (food[0].cookingPerson)%></div>
+                    <div><i class="icon_pin"></i>Hazırlanması süresi:<%=(food[0].prepareTime)%> -  Kişi Sayısı: <%- (food[0].personSize)%> - Pişme süresi:<%=(food[0].cookTime)%> </div>
     </div><!-- End sub_content -->
 </div><!-- End subheader -->
 </section><!-- End section -->
@@ -112,7 +112,7 @@
 					<h2 class="inner">Detay</h2>
 					<h3 class="nomargin_top" id="starters">Yapılışı</h3>
 					<p>
-				      <%- (food[0].making)%>
+				      <%- (food[0].make)%>
 					</p>
 
 					<hr>
@@ -127,10 +127,10 @@
 					<table class="table table_summary">
 					<tbody>
             <%for(var j=0; j<(food[0].ingredients).length; j++) {
-              if((food[0].ingredients[j]).name){%>
+              if((food[0].ingredients[j]).ingredient){%>
               <tr>
     						<td>
-    							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong><%=(food[0].ingredients[j]).count%></strong><%= (food[0].ingredients[j]).type%> <%= (food[0].ingredients[j]).name %>
+    							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong><%=(food[0].ingredients[j]).count%></strong>  <%= (food[0].ingredients[j]).type%> <%= (food[0].ingredients[j]).ingredient %>
     						</td>
     					<!--	<td>
     							<strong class="pull-right">$11</strong>
