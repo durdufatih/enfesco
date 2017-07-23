@@ -1029,8 +1029,8 @@ ul#cat_nav li a:hover, ul#cat_nav li a.active{
 	font-size:16px;
 }
 #sub_content #thumb{
-	width:130px;
-	height:130px;
+	width: 124px;
+    height: 93px;
 	overflow:hidden;
 	text-align:center;
 	padding-top:5px;
