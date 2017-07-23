@@ -51,20 +51,18 @@
           <div class="col-md-9 col-sm-9">
             <div class="desc">
               <div class="thumb_strip">
-                <a href="/find/<%= foods[i]._id %>"><img src="static/img/yemek.jpg" alt=""></a>
+                <a href="/find/<%= foods[i]._id %>"><img src="<%=foods[i].image%>" alt=""></a>
               </div>
-              <h3><%= foods[i].name%></h3>
-              <div class="type">
-                <%= foods[i].category%>
-              </div>
+              <h3><a href="/find/<%= foods[i]._id %>"><%= foods[i].name%></a></h3>
               <div class="type">
                  <%for(var j=0; j<(foods[i].ingredients).length; j++) {
                    if((foods[i].ingredients[j]).ingredient){%>
-                        <span style="color:<%=foods[i].ingredients[j].id%>">-<%=(foods[i].ingredients[j]).ingredient;%></span>
+                        <span style="color:'<%=foods[i].ingredients[j].id%>'">-<%=(foods[i].ingredients[j]).ingredient;%>&emsp;</span>
                     <%}
                   }%>
 
               </div>
+              
             <!--  <ul>
                 <li>Malzemeler Tamam mı?<i class="icon_check_alt2 ok"></i></li>
                 <li>Uzun süren bir yemek mi?<i class="icon_check_alt2 no"></i></li>
@@ -100,6 +98,9 @@
 <script src="static/js/jquery-1.11.2.min.js"></script>
 <script src="static/js/common_scripts_min.js"></script>
 <script src="static/js/functions.js"></script>
+<script>
+  jQuery('data-image-src').css('opacity', '0.6');
+</script>
 
 
 </body>

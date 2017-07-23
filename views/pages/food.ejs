@@ -81,7 +81,7 @@
     <div id="subheader">
 	<div id="sub_content">
     	<div id="thumb">
-         <img src="../static/img/yemek.jpg" alt="">
+         <img src="<%=food[0].image%>" alt="">
        </div>
       <div class="rating">
         <!--<i class="icon_star"></i> (<small><a href="detail_page_2.html">Read 98 reviews</a></small>)</div>-->
@@ -106,21 +106,7 @@
 <!-- Content ================================================== -->
 <div class="container margin_60_35">
 		<div class="row">
-
-			<div class="col-md-9">
-				<div class="box_style_2" id="main_menu">
-					<h2 class="inner">Detay</h2>
-					<h3 class="nomargin_top" id="starters">Yapılışı</h3>
-					<p>
-				      <%- (food[0].make)%>
-					</p>
-
-					<hr>
-
-			</div><!-- End col-md-6 -->
-    </div>
-
-			<div class="col-md-3" id="sidebar">
+<div class="col-md-3" id="sidebar">
             <div class="theiaStickySidebar">
 				<div id="cart_box" >
 					<h3>Malzemeler <i class="icon_cart_alt pull-right"></i></h3>
@@ -144,16 +130,25 @@
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
+			<div class="col-md-9">
+				<div class="box_style_2" id="main_menu">
+					<h2 class="inner">Detay</h2>
+					<h3 class="nomargin_top" id="starters">Yapılışı</h3>
+					<p>
+				      <%- (food[0].make)%>
+          </p>
+            <p>
+				      <b>Nefis yemek tariflerinden alıntıdır.</b>
+          </p>
+
+			</div><!-- End col-md-6 -->
+    </div>
+
+			
 
 		</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
-
-<!-- Footer ================================================== -->
-	<footer>
-      <% include ../partials/footer %>
-    </footer>
-<!-- End Footer =============================================== -->
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
