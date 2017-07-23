@@ -77,12 +77,9 @@
     <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" data-parallax="scroll" data-image-src="../static/img/burger.jpg" data-natural-width="1400" data-natural-height="470">
+<section class="parallax-window" data-parallax="scroll" data-image-src="<%=food[0].image%>" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
 	<div id="sub_content">
-    	<div id="thumb">
-         <img src="<%=food[0].image%>" alt="">
-       </div>
       <div class="rating">
         <!--<i class="icon_star"></i> (<small><a href="detail_page_2.html">Read 98 reviews</a></small>)</div>-->
         <h1><b><%=food[0].name%></b></h1>
@@ -135,7 +132,7 @@
 					<h2 class="inner">Detay</h2>
 					<h3 class="nomargin_top" id="starters">Yapılışı</h3>
 					<p>
-				      <%- (food[0].make)%>
+              <%- (food[0].make)%>
           </p>
             <p>
 				      <b>Nefis yemek tariflerinden alıntıdır.</b>
