@@ -54,6 +54,14 @@ app.post('/api/find', (req, res) => {
   db.collection('enfesco').find({ "id" : req.body.id}).toArray((err, result) => {
       if (err) return console.log(err)
       var json = JSON.stringify({item:result});
+      res.end(json);
+    })
+})
+
+app.get('/api/food/search', (req,res) => {
+  db.collection('enfesco').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      var json = JSON.stringify({item:result});
        res.end(json);
     })
 })
@@ -94,7 +102,6 @@ app.get('/about', (req, res) => {
 app.get('/data', (req, res) => {
   console.log("Gello");
   db.collection('enfesco').find().toArray((err, result) => {
-    console.log(result.length);
       for (var i = 0; i <result.length; i++) {
         /*var searchText="";
         for (var j = 0; j < result[i].ingredients.length; j++) {
@@ -102,7 +109,6 @@ app.get('/data', (req, res) => {
 
         }
         console.log(searchText);*/
-        console.log(result[i]._id)
          db.collection('enfesco').update({"_id" :new ObjectId(result[i]._id) },{$set : {"id":new ObjectId(result[i]._id).toString()}})
          console.log(db.collection('enfesco').find({"_id" :result[i]._id }).id);
          /*youTube.search(result[i].name, 1, function(error, food) {
@@ -126,13 +132,13 @@ app.get('/find/:id', (req, res) => {
   console.log(new ObjectId(req.params.id));
   db.collection('enfesco').find({ "_id" : ObjectId(req.params.id)}).toArray((err, result) => {
       if (err) return console.log(err)
-       console.log(result);
+
+       console.log(result)
        res.render('pages/food.ejs', {food: result});
     })
 })
 
 app.post('/item/search', (req, res) => {
-  console.log(req.body.q.term);
  db.collection('items').find().toArray((err, result) => {
       if (err) return console.log(err)
         res.send(JSON.stringify(result));
@@ -156,13 +162,13 @@ app.post('/',(req,res)=>{
 
         console.log(searchText);
    }
-   //searchText="\""+searchText+"\"";
-   console.log(searchText);
+
   }
   db.collection('enfesco').find({ $text: { $search : searchText}}, {score: {'$meta': "textScore"}}).sort({score:{'$meta': "textScore"}})
   .toArray((err, result) => {
       if (err) return console.log(err)
-      console.log(result);
+      //var itemArray=result.make.split('.');
+      //result.make=itemArray;
       res.render('pages/foods.ejs', {foods: result,searchItems:req.body.items});
   })
 
