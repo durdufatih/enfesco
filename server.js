@@ -15,7 +15,7 @@ const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
 youTube.setKey('AIzaSyBNq9B6345OOESbftbydnyV17QdX3HrSAk');
 
-MongoClient.connect('mongodb://139.59.154.200:27017/enfesco', (err, database) => {
+MongoClient.connect('mongodb://enfesco:mfd041990!@139.59.154.200:27017/admin', (err, database) => {
    if (err) return console.log(err)
 	  db = database
     db.collection('enfesco').createIndex({"searchText": "text"})
