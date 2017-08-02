@@ -58,7 +58,7 @@ h3 .slide_typo strong {font-family:"Helvetica Neue", Helvetica, Arial, sans-seri
 .slide_typo_2{color:#fff; font-size:18px; white-space:nowrap}
 
 .box_style_2 h2.inner {
-	background-color:rgba(0,0,0,0.25); 
+	background-color:rgba(0,0,0,0.70); 
 	color:#fff; 
 	margin:-25px -25px 25px -25px; 
 	padding:12px 15px; 
@@ -494,7 +494,7 @@ footer .styled-select {
 #custom-search-input input.btn_search:focus, #custom-search-input .search-query:focus{outline:none;}
 #custom-search-input input.btn_search:focus, #custom-search-input .search-query:focus{outline:none;}
 #count{
-	background-color:rgba(0,0,0,0.25);
+	background-color:rgba(0,0,0,0.70);
 	width:100%;
 	position:absolute;
 	bottom:0;
@@ -1255,7 +1255,7 @@ ul.opening_list li span{
     position: relative;
     padding: 11% 100px 10% 100px;
     height: 400px;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0,0,0,0.70);
 	color:#fff;
 	font-size:16px;
 }
@@ -1311,7 +1311,7 @@ ul.opening_list li span{
 	width:100%;
 	height:100%;
 	bottom:0;
-	background-color:rgba(0,0,0,0.25); 
+	background-color:rgba(0,0,0,0.70); 
 	z-index:999999; 
 }
 .sk-spinner-wave.sk-spinner {
@@ -1554,7 +1554,7 @@ select.form-control.form-white{
 	position: relative;
 	padding:1px 30px 10px 30px;
 	text-align: center;
-	background: rgba(0,0,0,0.25);
+	background: rgba(0,0,0,0.70);
 	border-radius: 0px;
 	border:none;
 }
