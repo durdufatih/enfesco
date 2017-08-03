@@ -14,7 +14,7 @@ var config = {
       password:'mfd041990!',
       host:'139.59.154.200',
       port:22,
-      dstHost:'127.0.0.1',
+      dstHost:'139.59.154.200',
       dstPort:27017,
       localHost:'127.0.0.1',
       localPort: 27017
@@ -29,7 +29,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 tunnel(config, function (error, server) {
   console.log("Hello");
-    MongoClient.connect('mongodb://enfesco:mfd041990!@localhost:27017/admin', (err, database) => {
+    MongoClient.connect('mongodb://enfesco:mfd041990!@localhost/admin', (err, database) => {
       if (err) return console.log(err)
         db = database
         db.collection('enfesco').createIndex({"searchText": "text"})
