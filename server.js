@@ -14,7 +14,7 @@ var config = {
       password:'mfd041990!',
       host:'139.59.154.200',
       port:22,
-      dstHost:'139.59.154.200',
+      dstHost:'127.0.0.1',
       dstPort:27017,
       localHost:'127.0.0.1',
       localPort: 27017
