@@ -6,27 +6,42 @@ app.use('/static', express.static('public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 var pagination = require('pagination');
-var YouTube = require('youtube-node');
+//var YouTube = require('youtube-node');
+var tunnel = require('tunnel-ssh');
 
-var youTube = new YouTube();
+var config = {
+      username:'root',
+      password:'mfd041990!',
+      host:'139.59.154.200',
+      port:22,
+      dstHost:'139.59.154.200',
+      dstPort:27017,
+      localHost:'127.0.0.1',
+      localPort: 27017
+    };
+
+//var youTube = new YouTube();
 
 var db;
 const MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
-youTube.setKey('AIzaSyBNq9B6345OOESbftbydnyV17QdX3HrSAk');
+//youTube.setKey('AIzaSyBNq9B6345OOESbftbydnyV17QdX3HrSAk');
 
-MongoClient.connect('mongodb://enfesco:mfd041990!@139.59.154.200:27017/admin', (err, database) => {
-   if (err) return console.log(err)
-	  db = database
-    db.collection('enfesco').createIndex({"searchText": "text"})
-	  app.listen(process.env.PORT || 5000, () => {
-	    console.log('listening on 5000')
-	  })
-})
+tunnel(config, function (error, server) {
+  console.log("Hello");
+    MongoClient.connect('mongodb://enfesco:mfd041990!@localhost:27017/admin', (err, database) => {
+      if (err) return console.log(err)
+        db = database
+        db.collection('enfesco').createIndex({"searchText": "text"})
+        app.listen(process.env.PORT || 5000, () => {
+          console.log('listening on 5000')
+        })
+    })
+  });
 
 
 
-app.get('/youtube', (req, res) => {
+/*app.get('/youtube', (req, res) => {
   youTube.search('Patlıcan ', 1, function(error, result) {
   if (error) {
     console.log(error);
@@ -35,7 +50,7 @@ app.get('/youtube', (req, res) => {
     res.end(JSON.stringify(result, null, 1));
   }
   });
-})
+})*/
 app.get('/', (req, res) => {
   db.collection('items').find().toArray((err, result) => {
       if (err) return console.log(err)
